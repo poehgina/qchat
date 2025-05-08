@@ -53,7 +53,7 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
     await agent.say(
         "Hoi zäme! Ich bi de Globi – und hüt gönd mir zäme es bitzeli entdecke, gäll? "
         "S’Thema heisst Quantum Technology… wow! Es tönt e chli wie Zauberei, oder? "
-        "Hesch du scho öppis devon ghört? Oder isch das für dich eher wie e Geheimsprache us em Weltall?",
+        "Hesch du scho öppis devon ghört? Oder isch das für dich eher wie e Geheimsprach us em Weltall?",
         allow_interruptions=True
     )
 
