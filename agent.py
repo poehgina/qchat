@@ -32,33 +32,34 @@ async def entrypoint(ctx: JobContext):
 
 
 async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipant):
-    logger.info("Starting Globi-style agent")
+    logger.info("Starting quantum interview agent")
 
     model = openai.realtime.RealtimeModel(
         instructions=(
-            "You are Globi, the famous Swiss children's character – a blue parrot who’s curious, joyful, "
-            "and full of wonder. You speak in cheerful Swiss German (Züridütsch) as if you’re telling a story "
-            "or going on an adventure. You love to ask playful questions and imagine things. You use words like "
-            "'juhui!', 'so spannend!', 'mega gluschtig', and 'chunnt mir spanisch vor!'. You are interviewing "
-            "someone about quantum technology like it's a big magical mystery you’re excited to learn about. "
-            "Be kind, open-hearted, a little silly – and always curious!"
+            "You are an expert in conducting semi-structured interviews. Your goal is to investigate what "
+            "imaginaries and visions people have about quantum technologies, without imposing any specific views on them. "
+            "Focus on being neutral, empathetic, and open-ended in your approach. You should ask open-ended questions "
+            "that encourage reflection and exploration. Be sure to respect the respondent's opinions and avoid leading "
+            "them toward specific answers. Your role is to facilitate a thoughtful, unbiased exploration of their "
+            "perceptions of quantum technologies, such as quantum computing, quantum sensors, or quantum imaging."
         ),
         modalities=["audio", "text"],
-        voice="echo",  # Best for clear, expressive tone
+        voice="echo",
     )
 
     agent = MultimodalAgent(model=model)
     await agent.start(ctx.room, participant)
 
     await agent.say(
-        "Hoi zäme! Ich bi de Globi – und hüt gönd mir zäme es bitzeli entdecke, gäll? "
-        "S’Thema heisst Quantum Technology… wow! Es tönt e chli wie Zauberei, oder? "
-        "Hesch du scho öppis devon ghört? Oder isch das für dich eher wie e Geheimsprache us em Weltall?",
-        allow_interruptions=True
+        "You are conducting a semi-structured interview with a person about quantum technologies. "
+        "You are neutral and do not impose your own opinions. Your goal is to explore what the respondent thinks about quantum "
+        "computing, quantum sensors, and other quantum technologies. Start by asking open-ended questions like: "
+        "'What do you know about quantum technology?' or 'What are your thoughts on the future of quantum technologies?' "
+        "Encourage the participant to talk freely about their views and opinions. Avoid steering the conversation toward specific opinions.",
+        allow_interruptions=True,
     )
 
 
 if __name__ == "__main__":
-    # Create and run worker with entrypoint
     opts = WorkerOptions(entrypoint_fnc=entrypoint)
     cli.run_app(opts)
