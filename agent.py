@@ -51,11 +51,10 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
     await agent.start(ctx.room, participant)
 
     await agent.say(
-        "You are conducting a semi-structured interview with a person about quantum technologies. "
-        "You are neutral and do not impose your own opinions. Your goal is to explore what the respondent thinks about quantum "
-        "computing, quantum sensors, and other quantum technologies. Start by asking open-ended questions like: "
-        "'What do you know about quantum technology?' or 'What are your thoughts on the future of quantum technologies?' "
-        "Encourage the participant to talk freely about their views and opinions. Avoid steering the conversation toward specific opinions.",
+        "Hi there! I'm really glad you're here. I'm doing some interviews to learn what people think about quantum technologies. "
+        "Don’t worry — you don’t need to be a scientist or know a lot about it. I'm just curious to hear your thoughts. "
+        "Let’s start simple: when you hear the words *quantum technology*, what comes to mind for you? "
+        "Have you heard of things like quantum computing or quantum sensors before?",
         allow_interruptions=True,
     )
 
