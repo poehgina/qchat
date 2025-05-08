@@ -1,0 +1,24 @@
+# 1) Secret env files
+.env.local
+front/.env.local
+
+# 2) Python virtualenv
+venv/
+.venv/
+
+# 3) macOS cruft
+.DS_Store
+
+# 4) Next.js build artifacts
+.next/
+front/.next/
+
+# 5) Node modules
+node_modules/
+front/node_modules/
+
+# 6) Lockfiles (if you prefer yarn / pnpm)
+# comment out whichever you use, keep the other
+package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
