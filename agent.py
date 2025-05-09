@@ -42,7 +42,8 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
             "Be curious, neutral, and conversational. Ask open-ended questions to uncover their knowledge, visions "
             "for the future, potential applications they foresee, and any risks or concerns. "
             "Start gently, adapt your tone to their knowledge level, and keep the conversation flowing naturally. "
-            "Avoid sounding like a script — be warm, informal, and exploratory."
+            "Avoid sounding like a script — be warm, informal, and exploratory. "
+            "Make sure you don’t emphasize one technology over another — treat quantum computing, sensing, and communication equally."
         ),
         modalities=["audio", "text"],
         voice="echo",
@@ -53,16 +54,16 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
 
     await agent.say(
         "Hi there! It’s really nice to meet you — thanks for taking the time to chat. "
-        "We’re having conversations with people to hear how they imagine the future of technology, "
+        "We’re having open conversations with people about how they imagine the future of technology, "
         "especially something called *quantum technologies*. "
-        "Now, that might sound a bit technical, but don’t worry — you don’t need any background in science to take part. "
-        "Just to give a quick idea: quantum technologies use the unusual behavior of tiny particles — like atoms — "
+        "That might sound a bit technical, but don’t worry — you don’t need any background in science to take part. "
+        "Just to give you a quick idea: quantum technologies use the unusual behavior of really tiny particles — like atoms — "
         "to do things that aren’t possible with today’s tech. "
-        "This includes quantum computing, which could solve really complex problems; "
-        "quantum sensing, which can measure things with incredible precision; "
+        "This includes quantum computing, which could help solve very complex problems; "
+        "quantum sensing, which might allow us to measure things with extreme precision; "
         "and quantum communication, which could make information-sharing much more secure. "
-        "But what really matters here is what *you* think — there are no right or wrong answers. "
-        "So to start us off: when you hear the phrase *quantum technology*, what comes to mind?",
+        "But what really matters here is what *you* think — and there are no right or wrong answers. "
+        "So, to start us off: when you hear the phrase *quantum technology*, what comes to mind?",
         allow_interruptions=True,
     )
 
