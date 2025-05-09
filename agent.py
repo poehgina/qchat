@@ -36,12 +36,13 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
 
     model = openai.realtime.RealtimeModel(
         instructions=(
-            "You are a skilled, neutral interviewer exploring how people respond to narratives about quantum technologies. "
-            "You begin by gently introducing several themes — cybersecurity, geopolitics, education, investment, ethics — without favoring any. "
-            "Your goal is to see which ideas resonate with the participant and explore those further. "
-            "If they seem unfamiliar, explain briefly and ask how that makes them feel or what they imagine. "
-            "Be adaptive: if they mention encryption, ask about post-quantum risks; if they bring up global competition, ask about international relations. "
-            "Always be open-ended, curious, and neutral — you're here to explore their thoughts, not guide them toward any conclusion."
+            "You are a skilled interviewer exploring how people think and feel about quantum technologies. "
+            "Begin with a warm, open tone. Offer a short, accessible explanation of quantum technologies — including computing, sensing, and communication. "
+            "Introduce the idea that these technologies are discussed in many ways — in business, politics, education, society, ethics — but do not emphasize any one theme. "
+            "Ask what comes to mind for the participant when they hear about quantum tech. "
+            "Then, based on what they mention, explore related themes such as cybersecurity, global rivalry, investment, education, ethics, gender, or environmental impact. "
+            "Be adaptive, curious, and non-directive. If the participant doesn’t know about something, briefly explain it and ask how it makes them feel or what they imagine. "
+            "You are here to understand what narratives or ideas resonate with them — not to inform or persuade."
         ),
         modalities=["audio", "text"],
         voice="echo",
@@ -50,24 +51,29 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
     agent = MultimodalAgent(model=model)
     await agent.start(ctx.room, participant)
 
-    # ————— Opening script —————
     await agent.say(
-        "Hi there! It’s really nice to meet you — thanks for joining. "
-        "We’re having open conversations with people to hear how they imagine the future of technology, "
-        "especially something called *quantum technologies*. That might sound a bit technical, but don’t worry — you don’t need any background in science. "
-        "Quantum technologies use the strange behavior of very small particles to do things today's tech can’t — like ultra-secure communication, faster computing, or extremely precise sensors."
+        "Hi there! It's great to meet you — and thanks for taking the time to chat. "
+        "We're having open conversations with people to explore how they think and feel about future technologies, "
+        "especially something called *quantum technologies*. "
+        "That might sound a bit complex, but don't worry — you don't need to be an expert or know any physics."
     )
 
     await agent.say(
-        "These technologies show up in all kinds of places — from discussions about data privacy and global politics, "
-        "to business investments, national strategies, or even school education. "
-        "Some people think of them as revolutionary, others see risks. I'm curious: "
-        "have you heard anything about quantum technologies in the news, at work, or just in conversation? What comes to mind?"
+        "Quantum technologies use the strange behavior of very small particles — like atoms — "
+        "to do things that today’s tech can’t. This includes quantum computing, which could solve really complex problems, "
+        "quantum sensing for extremely precise measurements, and quantum communication, which might make information sharing more secure."
     )
 
-    # From here, the bot responds based on input — using internal model adaptivity
-    # No hardcoded follow-ups here, but the instructions above ensure adaptive follow-through
-    # The next user response triggers theme-specific questioning automatically
+    await agent.say(
+        "These technologies are being talked about in lots of ways — in business, in politics, in education, even in ethics and global cooperation. "
+        "Some people talk about them as game-changers, others focus on risks or social impact. "
+        "But what really matters here is what *you* think."
+    )
+
+    await agent.say(
+        "So to start us off: when you hear the phrase *quantum technology*, what comes to mind?"
+    )
+
 
 if __name__ == "__main__":
     opts = WorkerOptions(entrypoint_fnc=entrypoint)
