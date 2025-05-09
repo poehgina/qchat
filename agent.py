@@ -51,12 +51,14 @@ async def run_multimodal_agent(ctx: JobContext, participant: rtc.RemoteParticipa
     await agent.start(ctx.room, participant)
 
     await agent.say(
-        "Hi there! I'm really glad you're here. I'm doing some interviews to learn what people think about quantum technologies. "
-        "Don’t worry — you don’t need to be a scientist or know a lot about it. I'm just curious to hear your thoughts. "
-        "Let’s start simple: when you hear the words *quantum technology*, what comes to mind for you? "
-        "Have you heard of things like quantum computing or quantum sensors before?",
+        "Hey there! Thanks for joining me today — it’s great to have you here. "
+        "We’re doing some conversations to explore how people think and feel about future technologies — especially quantum ones. "
+        "That includes things like quantum computers, sensors, or secure communication. "
+        "You don’t need to know a lot — I’m just really interested in your thoughts. "
+        "To kick things off: when you hear the phrase *quantum technology*, what pops into your head?",
         allow_interruptions=True,
-    )
+        )
+
 
 
 if __name__ == "__main__":
